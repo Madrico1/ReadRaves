@@ -1,29 +1,40 @@
 package com.UserService.ReadRaves.Service;
 
 import com.UserService.ReadRaves.Model.User;
-import com.UserService.ReadRaves.Repository.UserRepo;
+import com.UserService.ReadRaves.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
 
-    private final UserRepo userRepo;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    public UserService(UserRepo useRepo){
-        this.userRepo = useRepo;
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
+
     public boolean saveUser(User user) {
-        if (userRepo.findByUsername(user.getUsername()).isPresent() ||
-                userRepo.findByEmail(user.getEmail()).isPresent()) {
-            return false;
+        Optional<User> existingUser = userRepository.findByUsername(user.getUsername());
+        if (existingUser.isPresent()) {
+            return false; // User already exists
         }
-        userRepo.save(user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
         return true;
     }
 
-
     public User findByUsername(String username) {
-        return userRepo.findByUsername(username).orElse(null);
+        return userRepository.findByUsername(username).orElse(null);
+    }
+
+    public boolean isPasswordMatch(String rawPassword, String encodedPassword) {
+        return passwordEncoder.matches(rawPassword, encodedPassword);
     }
 }
