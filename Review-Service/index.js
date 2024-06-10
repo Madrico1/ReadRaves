@@ -1,5 +1,6 @@
 const express = require('express');
 const sequelize = require('./db');
+const Review = require('./Models/Review');
 
 // Initialize the Express application
 const app = express();
@@ -17,6 +18,9 @@ const startServer = async () => {
     try {
         await sequelize.authenticate();
         console.log('Connection to the database has been established successfully.');
+
+        await sequelize.sync(); // Synchronize all models with the database
+        console.log('Database synchronized successfully.');
 
         const PORT = process.env.PORT || 3000;
         app.listen(PORT, () => {
