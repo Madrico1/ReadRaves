@@ -1,6 +1,6 @@
 const express = require('express');
 const sequelize = require('./db');
-const Review = require('./Models/Review');
+const reviewRoutes = require('./routes/review');
 
 // Initialize the Express application
 const app = express();
@@ -8,10 +8,8 @@ const app = express();
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// Define a test route
-app.get('/', (req, res) => {
-    res.send('Welcome to the Review Service');
-});
+// Routes
+app.use('/api', reviewRoutes);
 
 // Connect to the PostgreSQL database and start the server
 const startServer = async () => {
