@@ -1,0 +1,17 @@
+<div class="review-form-container">
+  <form (ngSubmit)="submitReview()">
+    <div class="form-group">
+      <label for="bookTitle">Book Title:</label>
+      <input type="text" id="bookTitle" [(ngModel)]="bookTitle" name="bookTitle" required>
+    </div>
+    <div class="form-group">
+      <label for="reviewContent">Review Content:</label>
+      <textarea id="reviewContent" [(ngModel)]="reviewContent" name="reviewContent" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="rating">Rating:</label>
+      <input type="number" id="rating" [(ngModel)]="rating" name="rating" min="1" max="5" required>
+    </div>
+    <button type="submit">Submit Review</button>
+  </form>
+</div>

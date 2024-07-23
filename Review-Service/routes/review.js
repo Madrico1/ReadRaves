@@ -5,8 +5,8 @@ const Review = require('../models/review');
 // Create a new review
 router.post('/reviews', async (req, res) => {
     try {
-        const { bookTitle, reviewContent, rating, userId } = req.body;
-        const review = await Review.create({ bookTitle, reviewContent, rating, userId });
+        const { bookTitle, reviewContent, rating} = req.body;
+        const review = await Review.create({ bookTitle, reviewContent, rating });
         res.status(201).json(review);
     } catch (error) {
         res.status(400).json({ error: error.message });

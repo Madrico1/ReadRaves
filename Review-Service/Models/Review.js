@@ -2,6 +2,11 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
 const Review = sequelize.define('Review', {
+    id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
     bookTitle: {
         type: DataTypes.STRING,
         allowNull: false
@@ -17,10 +22,6 @@ const Review = sequelize.define('Review', {
             min: 1,
             max: 5
         }
-    },
-    userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
     },
     
 });

@@ -1,0 +1,111 @@
+/* Netflix style container */
+.netflix-container {
+    background-color: #141414;
+    color: #fff;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Title style */
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: white;
+    text-align: center;
+  }
+  
+  /* Review list with horizontal scrolling */
+  .review-list {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 0;
+  }
+  
+  /* Hide scrollbar */
+  .review-list::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .review-list {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centers the review items horizontally */
+  width: 100%;
+  margin-top: 100px;
+  }
+  
+  /* Individual review item style */
+  .review-item {
+    flex: 0 0 auto;
+    background-color: #333;
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 20px;
+    min-width: 300px;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    margin-bottom: 10px;
+  }
+  
+  .review-item:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Review content */
+  .review-content h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .review-content p {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .review-content .rating {
+    font-size: 14px;
+    font-weight: bold;
+    color: #f39c12;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 600px) {
+    .review-item {
+      min-width: 200px;
+      max-width: 200px;
+      padding: 15px;
+    }
+  
+    .title {
+      font-size: 20px;
+    }
+  }
+  .rating {
+    color: #f39c12;
+    font-size: 1.5em;
+  }  
+
+  .add-review-button {
+    background-color: #e50914;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    margin-left: 45.5%;
+
+    
+  }
+  
+  .add-review-button:hover {
+    background-color: #f40612;
+  }

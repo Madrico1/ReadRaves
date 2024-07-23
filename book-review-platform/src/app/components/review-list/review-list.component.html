@@ -1,0 +1,14 @@
+<div class="netflix-container">
+  <h2 class="title">Reviews</h2>
+  <button class="add-review-button" (click)="toggleForm()" class="add-review-button">Add Review</button>
+  <app-review-form *ngIf="showForm"></app-review-form>
+  <div class="review-list">
+    <div class="review-item" *ngFor="let review of reviews">
+      <div class="review-content">
+        <h3>{{ review.bookTitle }}</h3>
+        <p>{{ review.reviewContent }}</p>
+        <p class="rating">{{ getStars(review.rating) }}</p>
+      </div>
+    </div>
+  </div>
+</div>

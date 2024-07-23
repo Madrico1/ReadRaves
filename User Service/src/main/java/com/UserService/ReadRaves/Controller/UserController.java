@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     private final UserService userService;
@@ -29,13 +30,14 @@ public class UserController {
     }
 
     @PostMapping("/login")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<String> loginUser(@RequestParam("username") String username,
                                             @RequestParam("password") String password) {
         User user = userService.findByUsername(username);
         if (user != null && userService.isPasswordMatch(password, user.getPassword())) {
-            return new ResponseEntity<>("Login successful", HttpStatus.OK);
+            return ResponseEntity.ok().body("{\"message\": \"Login successful\"}");
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\": \"Invalid credentials\"}");
         }
     }
 }

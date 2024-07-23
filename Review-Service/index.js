@@ -1,5 +1,6 @@
 const express = require('express');
 const sequelize = require('./db');
+const cors = require('cors');
 const reviewRoutes = require('./routes/review');
 
 // Initialize the Express application
@@ -7,6 +8,7 @@ const app = express();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(cors());
 
 // Routes
 app.use('/api', reviewRoutes);
